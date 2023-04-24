@@ -1,0 +1,90 @@
+html{
+  padding: 0;
+  background-color: #b9e7e750;
+}
+
+.App {
+  text-align: center;
+  background-image: linear-gradient(#b9e7e710,#b9e7e7);
+}
+
+.cats{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.cats>*{
+  transition: 0.2s;
+}
+
+.cats>*:hover{
+  transform: scale(1.02);
+  cursor: pointer;
+  color: black;
+}
+
+.container{
+  margin-top: 100px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.news{
+  transition: 0.2s;
+  padding: 0.2rem 1.5rem 1rem 1.5rem;
+  width: 750px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 40px 0;
+  background:#dddddd
+}
+
+.news:hover{
+  transform: scale(1.02);
+  border-radius: 15px;
+}
+
+.img{
+  display: flex;
+  align-items: start;
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.img>img{
+  object-fit: cover;
+   width: 250px;
+   height:250px
+}
+
+.content{
+  margin-left: 30px;
+  text-align: justify;
+}
+
+.creds{
+  display: flex;
+  justify-content: start;
+}
+
+.creds>*{
+   margin-right: 20px;
+}
+
+h3{
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.description{
+  font-size:1.2rem;
+  color: #3d3d3d;
+}
