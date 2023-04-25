@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import News from './components/News';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+import Logo from './Logo.jpeg';
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
+import Tooltip from '@mui/material/Tooltip';
 
 function App() {
   
@@ -12,7 +16,6 @@ function App() {
   const [parent] = useAutoAnimate({duration:1000});
 
   useEffect(()=>{
-    
     axios.get('https://inshorts.deta.dev/news?category=all').then((response)=>{
       const res=response.data;
       setNews(res.data)
@@ -22,9 +25,12 @@ function App() {
 
   return (
     <div className="App">
+    <Tooltip title='Upread News'>
+    <img src={Logo} alt=""  style={{width:'100px',height:'100px',marginTop:'100px', marginBottom:'50px'}}/>
+    </Tooltip>
     <div className="cats">
-    
     <Chip
+    icon={Logo}
         onClick={()=>{
            setNews(null);
           axios.get('https://inshorts.deta.dev/news?category=all').then((response)=>{
@@ -66,7 +72,7 @@ function App() {
       
     })
         }}
-        color='success' variant='outlined'
+        color='primary' variant='outlined'
         label="Business"
       />
 
@@ -200,10 +206,19 @@ function App() {
 
       <div className="container" ref={parent}>
       {
-        news===null?<CircularProgress/>:(
+    
+        news===null? <Stack spacing={1}>
+      {/* For variant="text", adjust the height via font-size */}
+      <Skeleton variant="text" sx={{ fontSize: '1rem',bgcolor:'#ffffff10' } }  animation='wave'/>
+
+      {/* For other variants, adjust the size with `width` and `height` */}
+      <Skeleton animation="wave" variant="circular" width={60} height={60} sx={{ bgcolor: '#ffffff10' }} />
+      <Skeleton animation="wave" variant="rectangular" width={300} height={110} sx={{ bgcolor: '#ffffff10' }} />
+      <Skeleton animation="wave"variant="rounded" width={210} height={60} sx={{ bgcolor: '#ffffff10' }} />
+      
+    </Stack>:(
           news.map((post,index)=>{
           return (
-            /* author,title,content,date,imageUrl,readMoreUrl,time,url */
             <News author={post.author} title={post.title} content={post.content} date={post.date} imageUrl={post.imageUrl} readMoreUrl={post.readMoreUrl} time={post.time} url={post.url} />
           )
         })
